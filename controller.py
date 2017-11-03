@@ -21,7 +21,6 @@ def update_command(main_obj, command):
         set_anim('t_f', float(command[1]))
         set_anim('f_c', 0)
         set_anim('mat', main_obj.mat.copy())
-        # main_obj.mat = main_obj.dilate(float(command[1]))
 
     elif command[0] == "rotate":
         set_state('anim')
@@ -31,16 +30,27 @@ def update_command(main_obj, command):
         set_anim('t_y', float(command[3]))
         set_anim('f_c', 0)
         set_anim('mat', main_obj.mat.copy())
-        # main_obj.mat = main_obj.rotate(float(command[1]), float(command[2]), float(command[3]))
 
     elif command[0] == "reflect":
         set_state('anim')
-        set_anim('type', 'reflect')
-        set_anim('t_x', float(command[1]))
-        set_anim('t_y', float(command[2]))
+        if(command[1] == 'x'):
+            set_anim('type', 'custom')
+            set_anim('t_m', np.array([[1,0],[0,-1]]))
+        elif(command[1] == 'y'):
+            set_anim('type', 'custom')
+            set_anim('t_m', np.array([[-1,0],[0,1]]))
+        elif(command[1] == 'y=x'):
+            set_anim('type', 'custom')
+            set_anim('t_m', np.array([[0,1],[1,0]]))
+        elif(command[1] == 'y=-x'):
+            set_anim('type', 'custom')
+            set_anim('t_m', np.array([[0,-1],[-1,0]]))
+        else:
+            set_anim('type', 'reflect')
+            set_anim('t_x', float(command[1]))
+            set_anim('t_y', float(command[2]))
         set_anim('f_c', 0)
         set_anim('mat', main_obj.mat.copy())
-        # main_obj.mat = main_obj.reflect(float(command[1]), float(command[2]))
 
     elif command[0] == "shear":
         set_state('anim')
@@ -49,7 +59,6 @@ def update_command(main_obj, command):
         set_anim('t_f', float(command[2]))
         set_anim('f_c', 0)
         set_anim('mat', main_obj.mat.copy())
-        # main_obj.mat = main_obj.shear(command[1], float(command[2]))
 
     elif command[0] == "stretch":
         set_state('anim')
@@ -58,7 +67,6 @@ def update_command(main_obj, command):
         set_anim('t_f', float(command[2]))
         set_anim('f_c', 0)
         set_anim('mat', main_obj.mat.copy())
-        # main_obj.mat = main_obj.stretch(command[1], float(command[2]))
 
     elif command[0] == "custom":
         m = np.array([[float(command[1]), float(command[2])],
@@ -68,7 +76,6 @@ def update_command(main_obj, command):
         set_anim('t_m', m)
         set_anim('f_c', 0)
         set_anim('mat', main_obj.mat.copy())
-        # main_obj.mat = main_obj.custom(m)
 
     else:
         print("invalid command")

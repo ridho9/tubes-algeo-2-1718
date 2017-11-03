@@ -111,12 +111,6 @@ def draw_coordinate_line():
     glVertex2f(-width * scale / 2, 0)
     glEnd()
 
-def polygon_draw(poly):
-    glBegin(GL_POLYGON)
-    for i in poly['mat']:
-        glVertex2f(*(i + poly['trans']))
-    glEnd()
-
 objects = []
 objects.append(Polygon())
 
