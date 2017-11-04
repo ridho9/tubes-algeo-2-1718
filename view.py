@@ -1,16 +1,10 @@
-from OpenGL.GL import *
-from OpenGL.GLU import *
 from OpenGL.GLUT import *
-import numpy as np
-import math
-from config import *
-from model import *
 from controller import *
 
 width, height = window['width'], window['height']
 first = True
 
-
+#untuk mempertahankan perspektif 2d
 def refresh2d(width, height):
     scale = window['scale']
     x = int(width * scale/ 2)
@@ -22,7 +16,8 @@ def refresh2d(width, height):
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
 
-
+#fungsi untuk menggambar garis-garis koordinat
+#pada layar glut
 def draw_coordinate_line():
     glLineWidth(1)
     glColor3f(0.1, 0.1, 0.1)
@@ -111,6 +106,7 @@ def draw_coordinate_line():
     glVertex2f(-width * scale / 2, 0)
     glEnd()
 
+#inisialisasi object polygon
 objects = []
 objects.append(Polygon())
 
@@ -122,10 +118,11 @@ def draw():
     draw_coordinate_line()
 
     global objects
-    # draw object here
+    #Fungsi untuk menggambar bangun
+    #i merupakan object Polygon yang terdapat pada model.py
     for i in objects:
         i.draw()
     glutSwapBuffers()
 
-    # input logic here
+    #Mengecek input user, bila ada, maka perintah akan dijalankan
     update_all(objects)

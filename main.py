@@ -1,12 +1,28 @@
-from OpenGL.GL import *
-from OpenGL.GLU import *
 from OpenGL.GLUT import *
-import numpy as np
-import math
 from config import *
 from view import draw
 
+def hiasan():
+    print(
+        '''
+#######   ########  ######## ##    ##  ######   ##
+##     ## ##     ## ##       ###   ## ##    ##  ##
+##     ## ##     ## ##       ####  ## ##        ##
+##     ## ########  ######   ## ## ## ##   #### ##
+##     ## ##        ##       ##  #### ##    ##  ##
+##     ## ##        ##       ##   ### ##    ##  ##
+ #######  ##        ######## ##    ##  ######   ########
+ =======================================================
+ Ridho Pratama - 13516032
+ Gabriel Bentara Raphael - 13516119
+ =======================================================
+        '''
+    )
+
+
+
 if __name__ == "__main__":
+    hiasan()
     glutInit()
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH)
     glutInitWindowSize(window['width'], window['height'])
